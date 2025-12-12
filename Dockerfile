@@ -19,8 +19,11 @@ FROM nginx:1.27-alpine AS production
 # Copy built assets from the build stage
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# Expose HTTP port
-EXPOSE 80
+# Configure nginx to listen on port 4000
+RUN sed -i 's/listen 80;/listen 4000;/g' /etc/nginx/conf.d/default.conf
+
+# Expose HTTP port 4000
+EXPOSE 4000
 
 # Run nginx in the foreground
 CMD ["nginx", "-g", "daemon off;"]
