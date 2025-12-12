@@ -14,7 +14,7 @@ declare global {
   }
 }
 
-const routeMfs = Object.values(mfs).filter((m) => m.route);
+const routeMfs = Object.values(mfs).filter((m) => m.kind === "route");
 
 export default function App() {
   return (
