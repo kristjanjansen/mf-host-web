@@ -4,7 +4,12 @@ import type { MfConfig } from "../config/config";
 const loaded = new Map<string, Promise<void>>();
 
 function getSrc(mf: MfConfig) {
-  return (import.meta as any).env[mf.env] + "/index.js";
+  const env = (import.meta as any).env || {};
+  const value = env[mf.env];
+  // Debug: log which env var is used and its value
+  // eslint-disable-next-line no-console
+  console.log("[MF HOST] Using env var", mf.env, "=", value);
+  return value + "/index.js";
 }
 
 function loadScript(src: string): Promise<void> {
