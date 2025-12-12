@@ -1,3 +1,3 @@
 # Web host for microfrontends
 
-..
+.
