@@ -11,7 +11,7 @@ RUN npm ci
 COPY . .
 
 # Build the Vite app
-RUN npm run build
+RUN npm run build -- --mode services
 
 # Expose HTTP port 4000
 EXPOSE 4000
