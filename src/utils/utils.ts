@@ -6,9 +6,6 @@ const loaded = new Map<string, Promise<void>>();
 function getSrc(mf: MfConfig) {
   const env = (import.meta as any).env || {};
   const value = env[mf.env];
-  // Debug: log which env var is used and its value
-  // eslint-disable-next-line no-console
-  console.log("[MF HOST] Using env var", mf.env, "=", value);
   return value + "/index.js";
 }
 

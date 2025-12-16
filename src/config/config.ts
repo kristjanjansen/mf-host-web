@@ -1,41 +1,33 @@
-export type AppKind = "navigation" | "layout" | "route";
-
 export type MfConfig = {
   env: string;
-  id: string;
-  kind: AppKind;
   tag: string;
+  route?: boolean;
   path?: string;
-  label?: string;
 };
 
 export const mfs: Record<string, MfConfig> = {
   layout: {
     env: "VITE_MF_LAYOUT_URL",
-    id: "layout",
-    kind: "layout",
     tag: "mf-layout",
   },
   navigation: {
     env: "VITE_MF_NAVIGATION_URL",
-    id: "navigation",
-    kind: "navigation",
     tag: "mf-navigation",
   },
+  cookiebot: {
+    env: "VITE_MF_COOKIEBOT_URL",
+    tag: "mf-cookiebot",
+  },
   billing: {
+    route: true,
     env: "VITE_MF_BILLING_URL",
-    id: "billing",
-    kind: "route",
     tag: "mf-billing",
     path: "/billing",
-    label: "Billing",
   },
   dashboard: {
+    route: true,
     env: "VITE_MF_DASHBOARD_URL",
-    id: "dashboard",
-    kind: "route",
     tag: "mf-dashboard",
     path: "/dashboard",
-    label: "Dashboard",
   },
 };
