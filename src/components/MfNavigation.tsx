@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import type { MfConfig } from "../config/config";
+import { Loading } from "./Loading";
 import { useMfScript } from "../utils/utils";
 
 export function MfNavigation({ mf, slot }: { mf: MfConfig; slot?: string }) {
@@ -21,7 +22,7 @@ export function MfNavigation({ mf, slot }: { mf: MfConfig; slot?: string }) {
     if (!el) return;
 
     const handler = (evt: Event) => {
-      const path = (evt as CustomEvent<{ path: string }>).detail?.path;
+      const path = (evt as MessageEvent<{ path?: string }>).data?.path;
       if (path) navigate(path);
     };
 
@@ -30,7 +31,7 @@ export function MfNavigation({ mf, slot }: { mf: MfConfig; slot?: string }) {
   }, [navigate, ready]);
 
   if (!ready) {
-    return <div slot={slot}>Loading navigation</div>;
+    return <Loading slot={slot} />;
   }
 
   const NavTag = mf.tag as any;
